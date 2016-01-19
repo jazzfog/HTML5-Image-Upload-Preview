@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>
+			HTML5 image upload with preview and progress bar
+		</title>
+
+		<link href="style.css" rel="stylesheet">
+		<script type="text/javascript" src="upload.js"></script>
+
+	</head>
+	<body>
+
+		<form id="upload" action="./upload.php" method="POST" enctype="multipart/form-data">
+
+			<div id="dropzone">
+				Drop files here
+			</div>
+
+			<input type="file" id="fileselect" name="fileselect[]" multiple="multiple"/>
+
+			<input type="hidden" name="formIdent" value=""/>
+
+		</form>
+
+		<div id="previews"></div>
+
+	</body>
+</html>
