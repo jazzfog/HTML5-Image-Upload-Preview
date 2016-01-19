@@ -6,7 +6,7 @@ Eventually I come up with this simple example so maybe it will be usefull for so
 
 I added maximum comments and didn't add any extra functionalyty trying to keep the code easy to read and understand.
 
-This example features
+**This example features**
 
 - File multiselect
 - Drag and frop files right on page (dropzone)
