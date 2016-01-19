@@ -150,14 +150,24 @@ var Uploader = {
 		}
 	},
 
-	// Called if upload of file is successful
+	// Called when upload of file is successful
 	onUploadSuccessful: function (e, ident) {
-		//console.log('Image uploaded: ' + ident);
+		this.markImageAsUploaded(ident);
 	},
 
 	// Called if upload of file has failed
 	onUploadFailed: function (e, ident) {
-		//console.log('Image upload has failed: ' + ident);
+		this.markImageAsFailed(ident);
+	},
+
+	// Mark image as uploaded successfully
+	markImageAsUploaded: function (ident) {
+		this.getPreviewBox(ident).querySelector('.done').style.visibility = 'visible';
+	},
+
+	// Mark image as failed to upload
+	markImageAsFailed: function (ident) {
+		this.getPreviewBox(ident).querySelector('.fail').style.visibility = 'visible';
 	},
 
 	// Calculate thumbnail size by given original size and desired maximums
@@ -258,6 +268,8 @@ var Uploader = {
 		html += '	</div>';
 		html += '	<div class="title">';
 		html += '		' + title;
+		html += '		<strong class="done">[done]</strong>';
+		html += '		<strong class="fail">[fail]</strong>';
 		html += '	</div>';
 		html += '	<div class="imgHolder">';
 		html += '		<br><br><br>';

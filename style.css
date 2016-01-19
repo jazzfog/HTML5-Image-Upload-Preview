@@ -60,6 +60,23 @@
 	margin-bottom: 5px;
 }
 
+#previews .previewBox .title .done, #previews .previewBox .title .fail {
+	border: 1px solid silver;
+	padding: 1px;
+	background-color: #F9F9F9;
+	visibility: hidden;
+}
+
+#previews .previewBox .title .done {
+	color: green;
+	border-color: green;
+}
+
+#previews .previewBox .title .fail {
+	color: red;
+	border-color: red;
+}
+
 #previews .previewBox .imgHolder {
 	text-align: center;
 }
