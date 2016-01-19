@@ -15,8 +15,9 @@ I added maximum comments and didn't add any extra functionality trying to keep t
 - Progress bar for every file
 - Preview generator spinner on CSS (animated lags when large images are being resized)
 
-Just to make it clear: It does not use Flash.
 
-For demo purposes it allows to upload only images but you can easily remove this limitation.
-
-Please, note: This is just case study, it does not feature fallback for older browsers or comprehensive error handling.
+**Please, note**
+- This is just case study, it does not feature fallback for older browsers or comprehensive error handling.
+- For demo purposes it allows to upload only images but you can easily remove this limitation.
+- Example uses PHP on backend but, obviously, you can use anything: it works as regular post-form with file field
+- Just to make it clear: It does not use Flash.
