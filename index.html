@@ -17,11 +17,28 @@
 
 		<form id="upload" action="./upload.php" method="POST" enctype="multipart/form-data">
 
+			<h3>
+				&nbsp; &nbsp;
+				You can:
+			</h3>
+
+			<ul>
+				<li>
+					Drag & drop files on selected area
+				</li>
+				<li>
+					Paste images from clipboard
+				</li>
+				<li>
+					Select files
+					<input type="file" id="fileselect" name="fileselect[]" multiple="multiple"/>
+				</li>
+			</ul>
+
 			<div id="dropzone">
+				<br><br>
 				Drop files here
 			</div>
-
-			<input type="file" id="fileselect" name="fileselect[]" multiple="multiple"/>
 
 			<input type="hidden" name="formIdent" value=""/>
 
