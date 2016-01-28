@@ -1,4 +1,4 @@
-# HTML5 image upload with preview and progress bar
+# HTML5 image upload with preview, progress bar and paste from clipboard
 
 I needed simple image uploader with preview and progress bar.
 Eventually I came up with this simple example so maybe it will be useful for somebody else.
@@ -10,6 +10,7 @@ I added maximum comments and didn't add any extra functionality trying to keep t
 - File multiselect
 - Drag & drop files right on the page (dropzone)
 - Images preview thumbnails (resized on client size with JavaScript/canvas)
+- Paste images from clipboard
 - Upload as you select (you can change it though)
 - Async upload in background
 - Progress bar for every file
