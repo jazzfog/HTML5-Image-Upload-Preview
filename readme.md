@@ -1,4 +1,4 @@
-# HTML5 image multi-upload with preview, progress bar and paste from clipboard
+# HTML5 image multiselect-upload with preview, progress bar and paste from clipboard
 
 I needed simple image uploader with preview and progress bar.
 Eventually I came up with this simple example so maybe it will be useful for somebody else.
