@@ -49,6 +49,10 @@ var Uploader = {
 
 		dropzone.addEventListener('drop', this.onFileListChange.bind(this));
 
+		// We attach 'paste' event to window so you do not need to select a special element on the page before pasting
+		// But if you want you can attach it to any element, for example textarea where user writes his post, etc.
+		window.addEventListener('paste', this.onFileListChange.bind(this));
+
 		fileselect.addEventListener('change', this.onFileListChange.bind(this));
 	},
 
@@ -73,31 +77,57 @@ var Uploader = {
 	// List of added files changed
 	onFileListChange: function(e) {
 
-		// Stop browsing from opening dropped file in browser by link
-		e.preventDefault();
+		if (e.type !== 'paste') {
+			// Stop browsing from opening dropped file in browser by link
+			e.preventDefault();
+		}
 
 		// if file successfully dropped - unstyle dropzone
 		if (e.type === 'drop') {
 			this.styleDropzone(false);
 		}
 
-		// Getting dropped/selected files list
-		var files = e.target.files || e.dataTransfer.files;
-		var file;
+		var files = [], pastedFile;
+
+		// Getting 'selected' files
+		if (e.target.files) {
+
+			files = e.target.files;
+
+		// Getting 'dropped' files
+		} else if (e.dataTransfer && e.dataTransfer.files) {
+
+			files = e.dataTransfer.files;
+
+		// Getting 'pasted' files
+		} else if (pastedFile = this.extractFileFromClipboard(e)) {
+
+			pastedFile.fromClipboard = true;
+			files = [pastedFile];
+		}
 
 		// Create previews for files in upload list
 		for (var i = 0; i < files.length; i++) {
+			this.processFile(files[i]);
+		}
+	},
 
-			file = files[i];
+	// Extract file from clipboard
+	extractFileFromClipboard: function (event) {
 
-			// Check that added file is image
-			if (file.type.indexOf('image') === 0) {
-				this.processImage(file);
-			} else {
-				alert('You can upload only images');
-				return;
+		if (event.clipboardData
+			&& event.clipboardData.items
+			&& event.clipboardData.items.length
+		) {
+			var file = event.clipboardData.items[0].getAsFile();
+
+			// Return item only if it is file (not 'text', for example)
+			if (file instanceof Blob) {
+				return file;
 			}
 		}
+
+		return null;
 	},
 
 	// Upload file
@@ -192,7 +222,23 @@ var Uploader = {
 	},
 
 	// Do actions on image: generate ident, load, init resize
-	processImage: function(file) {
+	processFile: function(file) {
+
+		if (!(file instanceof Blob)) {
+			alert('You can upload only files');
+			return;
+		}
+
+		// Check file type (something like image/png)
+		// but do not forget to check file on server side
+		if (file.type.indexOf('image') !== 0) {
+			alert('You can upload only images');
+			return;
+		}
+
+		if (file.fromClipboard) {
+			file.name = 'Clipboard.png';
+		}
 
 		// Assigning file ident so we could update preview image in box when it is ready
 		file.ident = 'imgIdent-' + this.getRandomStr(8);
